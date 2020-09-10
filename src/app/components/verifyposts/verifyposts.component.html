@@ -1,0 +1,44 @@
+<div class="card" style="background: #7694bb;margin-right:20px;margin-left: 20px;">
+    <div class="card-body" style="font-weight:bold;font-size: 30px;color: white;" (click)="getinfluencers()">
+        Pending Posts 
+    </div>
+</div>
+
+<div class=" images-wrapper ">
+    <div class="image-holder " *ngFor="let post of posts " style="margin: 20px ">
+        <div class="card " style="
+        width: 250px;
+        height: 300px;
+    ">
+            <div class="card-header">
+                <div class="row">
+                    <div calls="col-4">
+                        <img src="{{post.userPhoto}}" style="width:50px;height:50px; border-radius:50% " />
+                    </div>
+                    <div calls="col-8" style="margin-left:2%;">
+                        <div style="font-weight: bold;">{{post.username}}</div><div style="font-size: 10px;">{{post.timestamp.toDate() | date}}</div>
+                    </div>
+                </div>
+              </div>
+            <div class="card-body ">
+                <div> {{post.description}}</div>
+              <div *ngIf="post.mediaUrl!==''">
+                <img src="{{post.mediaUrl}} " style="width: 200px;height:140px; " />
+
+              </div>
+            </div>
+            <div class="card-footer ">
+                <div class="row">
+                    <div class="col" style="text-align: left ">
+                        <button type="button" class="btn btn-outline-danger btn-sm" (click)="acceptOrReject(post,'rejected')">Reject</button> 
+                    </div>
+                    <div class="col" style="text-align: end; ">
+                        <button type="button" class="btn btn-outline-success btn-sm" (click)="acceptOrReject(post,'verified')">Approve</button>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>

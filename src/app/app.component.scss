@@ -1,0 +1,177 @@
+.container {
+    width: 80%;
+    margin: 0 auto;
+    /* Center the DIV horizontally */
+}
+
+.open {
+    margin-left: 15%
+}
+
+clofdrerfa {
+    background-color: #FFCC55 !important
+}
+
+// .fixed-header{
+//     // // width: 110% !important;
+//     // position: fixed;        
+//     // padding: 20px 0;
+//     // color: #fff;
+//     // margin-left: -16px;
+// }
+// .fixed-header1{
+//   width: 110% !important;
+//   position: fixed;        
+//   padding: 20px 0;
+//   color: #fff;
+//   margin-left: -16px;
+// }
+// .fixed-header2{
+//   width: 110% !important;
+//   position: fixed;        
+//   padding: 20px 0;
+//   color: #fff;
+//   margin-left: -16px;
+// }
+.fixed-footer {
+    width: 110%;
+    position: fixed;
+    background: rgb(59, 58, 58);
+    padding: 10px 0;
+    color: #fff;
+    margin-left: -16px;
+    border-top-style: solid;
+    margin-left: -16px;
+    border-top-color: crimson;
+}
+
+.fixed-header {
+    top: 0;
+}
+
+.fixed-header1 {
+    top: 0;
+}
+
+.fixed-header2 {
+    top: 0;
+}
+
+.fixed-footer {
+    bottom: 0;
+}
+
+.fixed-footer1 {
+    width: 110%;
+    position: fixed;
+    background: rgb(59, 58, 58);
+    padding: 10px 0;
+    color: #fff;
+    margin-left: -16px;
+    border-top-style: solid;
+    margin-left: -16px;
+    border-top-color: crimson;
+}
+
+
+/* Some more styles to beutify this example */
+
+// nav a{
+//     color: #fff;
+//     text-decoration: none;
+//     padding: 7px 25px;
+//     display: inline-block;
+// }
+.box-opener {
+    cursor: pointer;
+}
+
+.box {
+    background-color: #FFCC55;
+    max-height: 0px;
+    overflow-y: hidden;
+    transition: ease-in-out 400ms max-height;
+}
+
+.box.opened {
+    max-height: 500px;
+    transition: ease-in-out 600ms max-height;
+}
+
+.main {
+    margin-left: 160px;
+    /* Same as the width of the sidenav */
+    font-size: 28px;
+    /* Increased text to enable scrolling */
+    padding: 0px 10px;
+}
+
+.wrapper {
+    text-transform: uppercase;
+    background: #ececec;
+    color: #555;
+    cursor: help;
+    font-family: "Gill Sans", Impact, sans-serif;
+    font-size: 20px;
+    margin: 100px 75px 10px 75px;
+    padding: 15px 20px;
+    position: relative;
+    text-align: center;
+    width: 200px;
+    -webkit-transform: translateZ(0);
+    /* webkit flicker fix */
+    -webkit-font-smoothing: antialiased;
+    /* webkit text rendering fix */
+}
+
+.tooltiptext {
+    visibility: visible;
+    position: absolute;
+    z-index: 1;
+    top: 60%;
+    width: 60vw;
+    height: 20vh;
+    background-color: grean;
+    margin-left: -15%;
+}
+
+.Usertooltiptext {
+    visibility: visible;
+    position: absolute;
+    z-index: 1;
+    top: 60%;
+    width: 25vw;
+    height: 20vh;
+    background-color: grean;
+    //margin-left: -15%;
+}
+
+.pt-3,
+.py-3 {
+    padding-top: 4rem !important;
+}
+
+.bg-xxx {
+    border-radius: 5px;
+    box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.15);
+    border: solid 1px #e4e4e4 !important;
+    background-color: rgb(255, 255, 255) !important;
+}
+
+@media only screen and (min-width: 768px) {
+    .bg-xxx {
+        border-radius: 5px;
+        box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.15);
+        border: solid 1px #e4e4e4 !important;
+        background-color: rgb(255, 255, 255) !important;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .bg-xxx {
+        border-radius: 5px;
+        box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.15);
+        border: solid 1px #e4e4e4 !important;
+        background-color: #fff !important;
+    }
+}

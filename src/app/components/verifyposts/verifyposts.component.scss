@@ -1,0 +1,134 @@
+body {
+    font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+    height: 87%;
+    width: 160px;
+    position: fixed;
+    z-index: 0;
+    left: 0;
+    top: 1;
+    background-color: #10608f;
+    overflow-x: hidden;
+    padding-top: 20px;
+    margin-top: 2%;
+}
+
+.sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #f3efef;
+    display: block;
+    height: 50px;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+    background-color: burlywood;
+    height: 50px;
+}
+
+.main {
+    margin-left: 160px;
+    /* Same as the width of the sidenav */
+    font-size: 28px;
+    /* Increased text to enable scrolling */
+    padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+    .sidenav a {
+        font-size: 18px;
+    }
+}
+
+.overdue {
+    font-family: Source Sans Pro;
+    font-size: 20px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.2;
+    letter-spacing: normal;
+    text-align: left;
+    color: #ffffff;
+}
+
+.status-pending {
+    font-family: Source Sans Pro;
+    font-size: 14px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.21;
+    letter-spacing: normal;
+    text-align: left;
+    color: #ffffff;
+}
+
+.accept {
+    font-family: Source Sans Pro;
+    font-size: 14px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.21;
+    letter-spacing: normal;
+    text-align: left;
+    color: #f5ff00;
+}
+
+.ready {
+    font-family: Source Sans Pro;
+    font-size: 14px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.21;
+    letter-spacing: normal;
+    text-align: left;
+    color: #3bff00;
+}
+
+.number {
+    font-family: Source Sans Pro;
+    font-size: 40px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.2;
+    letter-spacing: normal;
+    text-align: left;
+    color: #ffffff;
+}
+
+.custom-css {
+    font-family: Source Sans Pro;
+    font-size: 20px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.2;
+    letter-spacing: normal;
+    text-align: left;
+    color: #ffffff;
+}
+
+.images-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.image-holder {
+    padding: 2px;
+    /*for white border around images*/
+}
+
+.image-holder img {
+    height: 100%;
+}

@@ -1,0 +1,80 @@
+<div style="margin-left: 5%;">
+    <div class="headerStyle">
+        Wallet Points:
+    </div>
+    <br>
+    <div class="row">
+     <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2" >
+       <span >Sign Up Points:</span>
+     </div>
+     <div class="col-lg-1 col-md-1 col-xs-1 col-sm-1" >
+        <span >:</span>
+      </div>
+     <div  class="col-lg-9 col-md-9 col-xs-9 col-sm-9" >
+        <input type="text"  maxlength="5" (keypress)="numberOnly($event)"class="inputCss"  [(ngModel)]="signUpPoints" 
+        placeholder="Enter Sign Up points" >
+    </div>
+    <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2" >
+        <span >Gold</span>
+      </div>
+      <div class="col-lg-1 col-md-1 col-xs-1 col-sm-1" >
+        <span >:</span>
+      </div>
+      <div class="col-lg-9 col-md-9 col-xs-9 col-sm-9" >
+         <input type="text" maxlength="5" (keypress)="numberOnly($event)" class="inputCss"  [(ngModel)]="goldmebershipPoints" 
+         placeholder="Enter Gold  points" >
+     </div><div class="col-lg-2 col-md-2 col-xs-2 col-sm-2" >
+        <span >Regional Champion</span>
+      </div>
+      <div class="col-lg-1 col-md-1 col-xs-1 col-sm-1" >
+        <span >:</span>
+      </div>
+      <div class="col-lg-9 col-md-9 col-xs-9 col-sm-9" >
+         <input type="text" maxlength="5" (keypress)="numberOnly($event)" class="inputCss"  [(ngModel)]="rcPoints" 
+         placeholder="Enter Regional Champion points" >
+     </div>
+    </div>
+<br>
+    <div class="headerStyle">
+        Credits:
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2" >
+          <span >Bronze</span>
+        </div>
+        <div class="col-lg-1 col-md-1 col-xs-1 col-sm-1" >
+            <span >:</span>
+          </div>
+        <div class="col-lg-9 col-md-9 col-xs-9 col-sm-9" >
+           <input type="text" maxlength="5" (keypress)="numberOnly($event)" class="inputCss"  [(ngModel)]="bronzePoints" 
+           placeholder="Enter Bronze points" >
+       </div>
+       <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2" >
+        <span >Silver</span>
+      </div>
+      <div class="col-lg-1 col-md-1 col-xs-1 col-sm-1" >
+        <span >:</span>
+      </div>
+      <div class="col-lg-9 col-md-9 col-xs-9 col-sm-9" >
+         <input type="text" maxlength="5" (keypress)="numberOnly($event)" class="inputCss"  [(ngModel)]="silverPoints" 
+         placeholder="Enter Silver points" >
+     </div><div class="col-lg-2 col-md-2 col-xs-2 col-sm-2" >
+        <span >Gold</span>
+      </div>
+      <div class="col-lg-1 col-md-1 col-xs-1 col-sm-1" >
+        <span >:</span>
+      </div>
+      <div class="col-lg-9 col-md-9 col-xs-9 col-sm-9" >
+         <input type="text" maxlength="5" (keypress)="numberOnly($event)" class="inputCss"  [(ngModel)]="goldPoints" 
+         placeholder="Enter Gold points" >
+     </div>
+       </div>
+       <br>
+       <br>
+       <div>
+        <div style="margin-left:10%">
+            <button type="button" class="btn btn-primary btn-sm" (click)="update()">Update</button> 
+        </div>
+       </div>
+</div>

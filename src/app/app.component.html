@@ -1,0 +1,195 @@
+<!-- Bootstrap NavBar -->
+<!-- (mousedown)="inspect($event)" -->
+
+<body [ngClass]="{'image':(loggedIn=='loginPage')}">
+    <!--'fixed-header': dataaaa1=='Theme1', 'fixed-header1': dataaaa1=='theme2','fixed-header2': dataaaa1=='theme3',  -->
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-xxx fixed-top" [ngClass]="{ 'navbar navbar-expand-md navbar-dark bg-primary fixed-top nav-collapsedddd':true,'clofdrerfa':showSidebar}" *ngIf="(loggedIn!='loginPage')" style="height: 70px;">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+<span (click)="clickUser()"><img src="../assets/images/logo.png" width="160" height="65" class="d-inline-block align-top" alt="" [class.imagemargin]="true">
+</span>
+<!-- tooltip for side navigation -->
+<span class="tooltiptext" *ngIf="showtoolTip">
+    <!-- <div style="text-align: left; margin-left:-3rem;margin-top: 8px;">
+          <i class="fa fa-caret-up" style="font-size:24px;color:rgb(247, 232, 232)"></i>
+
+    </div> -->
+
+  <div style="background-color:#a09e9f; border-style: groove; border-radius: 2%; margin-top: -2.7rem; margin-left: -6.2rem; height: 100vh;max-height: 100vh; overflow-y: auto;-webkit-transition: width 2s;transition: width 2s;" (click)="clickUser()">
+          <a  routerLink="/createpost" routerLinkActive="your-css-class" class="list-group-item list-group-item-action  hoverCss text-color">
+              <span class="menu-collapsed">Create Post</span>
+          </a>  
+          <!-- <a  routerLink="/createcontest" routerLinkActive="your-css-class" class="list-group-item list-group-item-action  hoverCss text-color">
+            <span class="menu-collapsed">Create Contest</span>
+        </a>    -->
+      <a  routerLink="/verifyPost" routerLinkActive="your-css-class" class="list-group-item list-group-item-action  hoverCss text-color">
+              <span class="menu-collapsed">Pending Posts</span>
+          </a>
+          <a  routerLink="/appcontrolls" routerLinkActive="your-css-class" class="list-group-item list-group-item-action  hoverCss text-color">
+            <span class="menu-collapsed">User credits</span>
+        </a>
+        
+  </div>
+</span>
+<!-- end side navigation -->
+</button>
+        <!-- for desktop and tabs -->
+        <a class="navbar-brand collapsed" style="margin-left: -1.8%">
+            <img src="../assets/images/logo.png" width="235" height="69" class="d-inline-block align-top" alt="" [class.imagemargin]="true">
+        </a>
+        <!-- end for desktop and tabs -->
+
+        <!-- for small devices like mobile with below 768 resolution -->
+        <a class="navbar-brand collapsed-display" style="margin-left: -1.8%">
+            <span class="menu-collapsed" (click)="clickUser2()">
+      <!-- <img src="assets/images/user.png"
+      srcset="assets/images/user@2x.png 2x"
+      class="user" style="margin-top: -31%;margin-right: 10px;"> -->
+      <i class="fa fa-ellipsis-v" style="font-size:50px; color:white;margin-right: 10px;"></i>
+  </span>
+            <span class="Usertooltiptext" *ngIf="showtoolTipUser1">
+          <div style="text-align: left;">
+                <i class="fa fa-caret-up" style="font-size:24px;color:rgb(216, 200, 200); margin-left: -25%"></i>
+
+          </div>
+
+        <div style="background-color:steelblue; border-style: groove; border-radius: 2%; margin-left: -200%;width: 50vw;max-width: 50vw;white-space: initial;" (click)="clickUser2()">
+                <a  class="list-group-item list-group-item-action  hoverCss text-color">
+                  <span>User Name: Nagaraju</span>
+        </a>
+        <a class="list-group-item list-group-item-action  hoverCss text-color">
+            <span>User Role: Admin</span>
+        </a>
+        <a class="list-group-item list-group-item-action  hoverCss text-color">
+            <span (click)="logout()">Logout <i class="fa fa-sign-out" aria-hidden="true"></i></span>
+        </a>
+        </div>
+        </span>
+        </a>
+        <!-- end for small devices -->
+
+        <!-- this is for large divices from ipad to desktop version> -->
+        <div class="collapse navbar-collapse" id="navbarNavDropdown" style="margin-left: 3%">
+            <div style=" width: 100%">
+                <div style="float:left;line-height:30px;">
+                    <ul class="navbar-nav" style="float: right;">
+                        <li class="nav-item active">
+                            <a class="nav-link"> <span style="margin-left: 2%" (click)="collapseSide()"><i class="fa fa-bars" style="color:black"></i></span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"><span  (click)="fullScreen()" *ngIf="showFullsreen"><i class="fa fa-arrows-alt" style=" color:black" aria-hidden="true"></i> </span>
+                                      <span  *ngIf="!showFullsreen" (click)="closeFullscreen()"><i class="fa fa-compress" style=" color:black"aria-hidden="true"></i>
+                                  </span>
+                                    </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div type="button" class="edit_button" style="float: right;">
+                    <ul class="navbar-nav" style="float: right;">
+                        <li class="nav-item active" style="margin-top: 6%;">
+                            <i class="fa fa-life-ring" aria-hidden="true" style="color:#bcbccb"></i>
+                        </li> &nbsp; &nbsp;
+                        <li class="nav-item active" style="margin-top: 6%;">
+                            <i class="fa fa-comments" aria-hidden="true" style="color:#bcbccb"></i>
+                        </li> &nbsp; &nbsp;
+                        <li class="nav-item active" style="margin-top: 6%;">
+                            <i class="fa fa-bell-o" aria-hidden="true" style="color:#bcbccb"></i>
+                        </li>
+                        <li class="nav-item active" style="font-size: 36px; color:#bcbccb">|</li>&nbsp; &nbsp; &nbsp; &nbsp;
+                        <li class="nav-item active" style="margin-top: 6%; font-family: Source Sans Pro;
+                  
+                  color: #515968;">
+                            {{value}}
+                        </li> &nbsp; &nbsp;
+                        <li class="nav-item">
+
+                            <a class="nav-link"><span  (click)="clickUser1()"><img src="../assets/images/user.png"
+                          srcset="../assets/images/user@2x.png 2x"
+                          class="user"> </span>
+                        </a>
+                        </li>
+                    </ul>
+                    <span class="Usertooltiptext" *ngIf="showtoolTipUser">
+                      <div style="text-align: left; margin-left: 25%">
+                            <i class="fa fa-caret-up" style="font-size:24px;color:brown"></i>
+            
+                      </div>
+            
+                    <div style="background-color:steelblue; border-style: groove; border-radius: 2%; width: 19vw" (click)="clickUser1()">
+                            <a  class="list-group-item list-group-item-action  hoverCss text-color">
+                              <span>User Name: Nagaraju</span>
+                    </a>
+                    <a class="list-group-item list-group-item-action  hoverCss text-color">
+                        <span>User Role: Admin</span>
+                    </a>
+                    <a class="list-group-item list-group-item-action  hoverCss text-color">
+                        <span (click)="logout()">Logout <i class="fa fa-sign-out" aria-hidden="true"></i></span>
+                    </a>
+                </div>
+                </span>
+            </div>
+
+        </div>
+        <!-- <div style="margin-left: 75vw;">
+          <span style="color:black; color: black;font-size: 25px;" (click)="clickUser1()" ><i class="fa fa-user" aria-hidden="true"></i> {{value}}</span> &nbsp;&nbsp; -->
+        <!-- <span class="selected">
+                  <select [(ngModel)]="slectedTheme" (ngModelChange)="onChange(slectedTheme)" style="background-color: transparent;
+                  border-style: none;">
+                      <option value="Theme1">Theme 1</option>
+                      <option value="theme2">Theme 2</option>
+                      <option value="theme3">Theme 3</option>
+                  </select>
+               </span> 
+              </div> -->
+        </div>
+        <!-- end for desktop verison -->
+    </nav>
+    <!-- NavBar END -->
+
+
+    <!-- Bootstrap row -->
+    <div class="row" id="body-row" style="overflow-x: hidden">
+        <!-- Sidebar -->
+        <div id="sidebar-container" class="sidebar-expanded d-none d-md-block col-2 " style="    padding-top: 4.5rem !important; position: fixed" *ngIf="(loggedIn!='loginPage') && showSidebar">
+            <ul class="list-group sticky-top sticky-offset sidenav1" style="height: 100vh; max-height: 100vh; overflow-y: visible">
+                <a routerLink="/createpost" routerLinkActive="your-css-class" data-toggle="collapse" aria-expanded="false" class=" list-group-item list-group-item-action flex-column align-items-start hoverCss">
+                    <div class="d-flex w-100 justify-content-start align-items-center text-color">
+                        <span class="fa fa-dashboard fa-fw mr-3"></span>
+                        <span class="menu-collapsed">Create Post</span>
+                    </div>
+                </a>
+                <!-- <a routerLink="/createcontest" routerLinkActive="your-css-class" data-toggle="collapse" aria-expanded="false" class=" list-group-item list-group-item-action flex-column align-items-start hoverCss">
+                    <div class="d-flex w-100 justify-content-start align-items-center text-color">
+                        <span class="fa fa-dashboard fa-fw mr-3"></span>
+                        <span class="menu-collapsed">Create Contest</span>
+                    </div>
+                </a> -->
+               
+                <a routerLink="/verifyPost" routerLinkActive="your-css-class" data-toggle="collapse" aria-expanded="false" class=" list-group-item list-group-item-action flex-column align-items-start hoverCss">
+                    <div class="d-flex w-100 justify-content-start align-items-center text-color">
+                        <span class="fa fa-dashboard fa-fw mr-3"></span>
+                        <span class="menu-collapsed">Pending Posts</span>
+                    </div>
+                </a>
+                <a routerLink="/appcontrolls" routerLinkActive="your-css-class" data-toggle="collapse" aria-expanded="false" class=" list-group-item list-group-item-action flex-column align-items-start hoverCss">
+                    <div class="d-flex w-100 justify-content-start align-items-center text-color">
+                        <span class="fa fa-dashboard fa-fw mr-3"></span>
+                        <span class="menu-collapsed">User credits</span>
+                    </div>
+                </a>
+            </ul>
+            <!-- List Group END-->
+        </div>
+        <!-- sidebar-container END -->
+
+        <!-- MAIN -->
+        <div class="col py-3" [class.open]="(loggedIn!='loginPage') && showSidebar" style="padding-top: 7rem !important;">
+            <router-outlet></router-outlet>
+        </div>
+        <!-- Main Col END -->
+
+    </div>
+</body>
+<!-- body-row END -->
