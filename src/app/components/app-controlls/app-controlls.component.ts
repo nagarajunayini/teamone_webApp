@@ -7,12 +7,14 @@ import Swal from 'sweetalert2'
   styleUrls: ['./app-controlls.component.scss']
 })
 export class AppControllsComponent implements OnInit {
-  signUpPoints=10;
-  silverPoints;
-  bronzePoints;
-  rcPoints;
-  goldmebershipPoints;
-  goldPoints;
+  signUpPoints="10";
+  oneStarUser="0";
+  twoStarUser="0";
+  threeStarUser="0";
+  fourStarUser="0";
+  fiveStarUser="0";
+  rcPoints="0";
+  referalPoints="10";
   documentId;
   creditsAndPoints={}
   constructor(private db: AngularFirestore) { }
@@ -21,13 +23,16 @@ export class AppControllsComponent implements OnInit {
     this.getCreditsAndPoints();
   }
   update(){
-    this.creditsAndPoints['bronzePoints'] =this.bronzePoints;
-    this.creditsAndPoints['goldMembership'] = this.goldmebershipPoints;
-    this.creditsAndPoints['goldPoints'] =this.goldPoints;
-    this.creditsAndPoints['rcship'] =this.rcPoints;
-    this.creditsAndPoints['signupPoints'] =this.signUpPoints;
-    this.creditsAndPoints['silverPoints'] =this.silverPoints;
-    this.db.collection('creditsandpoints').doc(this.documentId).set(this.creditsAndPoints);
+    this.creditsAndPoints['referalPoints'] = parseInt(this.referalPoints);
+    this.creditsAndPoints['rcship'] = parseInt(this.rcPoints);
+    this.creditsAndPoints['signupPoints'] =parseInt(this.signUpPoints);
+    this.creditsAndPoints['oneStarUser'] =parseInt(this.oneStarUser);
+    this.creditsAndPoints['twoStarUser'] =parseInt(this.twoStarUser);
+    this.creditsAndPoints['threeStarUser'] =parseInt(this.threeStarUser);
+    this.creditsAndPoints['fourStarUser'] =parseInt(this.fourStarUser);
+    this.creditsAndPoints['fiveStarUser'] =parseInt(this.fiveStarUser);
+
+    this.db.collection('userLevels').doc(this.documentId).set(this.creditsAndPoints);
     Swal.fire({
       title: 'Success!',
       text: 'Updated successfully',
@@ -38,17 +43,19 @@ export class AppControllsComponent implements OnInit {
   }
 
   getCreditsAndPoints(){
-    this.db.collection("creditsandpoints").get().subscribe(snaphsot=>{
+    this.db.collection("userLevels").get().subscribe(snaphsot=>{
       snaphsot.forEach(doc=>{
         console.log(doc.id)
         this.documentId=doc.id
         this.creditsAndPoints= doc.data();
-       this.bronzePoints = doc.data().bronzePoints
-        this.goldmebershipPoints= doc.data().goldMembership
-        this.goldPoints= doc.data().goldPoints
+        this.oneStarUser = doc.data().oneStarUser
+        this.twoStarUser= doc.data().twoStarUser
+        this.threeStarUser= doc.data().threeStarUser
+        this.fourStarUser= doc.data().fourStarUser
+        this.fiveStarUser= doc.data().fiveStarUser
         this.rcPoints= doc.data().rcship
-        this.signUpPoints= doc.data().signupPoints
-        this.silverPoints= doc.data().silverPoints
+        this.signUpPoints= doc.data().signupPoints;
+        this.referalPoints = doc.data().referalPoints
       })
     })
   }

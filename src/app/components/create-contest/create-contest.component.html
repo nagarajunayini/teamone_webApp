@@ -1,12 +1,45 @@
-<div  style="margin-left: 20px;">
-    <input #file type="file" accept='image/*' (change)="preview(file.files)" />
+<span style="color:red;" *ngIf="message">{{message}}</span>
+<div style="margin-left: 20px;">
+  <img [src]="imgURL" height="200" *ngIf="imgURL">
+</div>
+<div style="margin-left: 20px;">
+  <input #file type="file" accept='image/*' (change)="preview(file.files)" />
 </div>
 <br>
-<div  style="margin-left: 20px;">
-  <input  type="text" [(ngModel)]="postDescription"/>
+<div style="margin-left: 20px;">
+  <textarea id="w3review" name="w3review" rows="4" cols="50" [(ngModel)]="postDescription">
+</textarea>
 </div>
 <br>
 <div>
-    <button type="button" class="btn btn-primary btn-sm"(click)="createContest()">Create Contest</button>
+  <button type="button" class="btn btn-primary btn-sm" (click)="createContest()" style="margin-left: 5%;">Create
+    Contest</button>
+</div>
 
+<div class=" images-wrapper ">
+  <div class="image-holder " *ngFor="let post of posts " style="margin: 20px ">
+    <div class="card " style="
+      width: 250px;
+    
+  ">
+      <div class="card-header">
+        <div class="row">
+          <div calls="col-4">
+            <img src="{{post.userPhoto}} " style="width:50px;height:50px; border-radius:50% " />
+          </div>
+          <div calls="col-8" style="margin-left:2%;">
+            <div style="font-weight: bold;">{{post.username}}</div>
+            <div style="font-size: 10px;">{{post.timestamp.toDate() | date}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body ">
+        <div> {{post.description}}</div>
+        <div *ngIf="post.mediaUrl!==''">
+          <img src="{{post.mediaUrl}} " style="width: 200px;height:140px; " />
+
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

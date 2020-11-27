@@ -1,0 +1,196 @@
+
+<div>
+    <div class="headerStyle">
+        Points Required for the user to post the content:
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2" >
+          <span >Normal user:</span>
+        </div>
+        <div class="col-lg-1 col-md-1 col-xs-1 col-sm-1" >
+           <span >:</span>
+         </div>
+        <div  class="col-lg-9 col-md-9 col-xs-9 col-sm-9" >
+           <input type="text"  maxlength="5" (keypress)="numberOnly($event)"class="inputCss"  [(ngModel)]="nomralUser" 
+           placeholder="Enter Sign Up points" >
+       </div>
+       <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2" >
+           <span >1 Star User:</span>
+         </div>
+         <div class="col-lg-1 col-md-1 col-xs-1 col-sm-1" >
+           <span >:</span>
+         </div>
+         <div class="col-lg-9 col-md-9 col-xs-9 col-sm-9" >
+            <input type="text" maxlength="5" (keypress)="numberOnly($event)" class="inputCss"  [(ngModel)]="oneStarUser" 
+            placeholder="Enter Gold  points" >
+        </div>
+        <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2" >
+           <span >2 Star User:</span>
+         </div>
+         <div class="col-lg-1 col-md-1 col-xs-1 col-sm-1" >
+           <span >:</span>
+         </div>
+         <div class="col-lg-9 col-md-9 col-xs-9 col-sm-9" >
+            <input type="text" maxlength="5" (keypress)="numberOnly($event)" class="inputCss"  [(ngModel)]="twoStarUser" 
+            placeholder="Enter Regional Champion points" >
+        </div>
+    <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2" >
+        <span >3 Star User:</span>
+      </div>
+      <div class="col-lg-1 col-md-1 col-xs-1 col-sm-1" >
+        <span >:</span>
+      </div>
+      <div class="col-lg-9 col-md-9 col-xs-9 col-sm-9" >
+         <input type="text" maxlength="5" (keypress)="numberOnly($event)" class="inputCss"  [(ngModel)]="threeStarUser" 
+         placeholder="Enter Regional Champion points" >
+     </div>
+    <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2" >
+        <span >4 Star User:</span>
+      </div>
+      <div class="col-lg-1 col-md-1 col-xs-1 col-sm-1" >
+        <span >:</span>
+      </div>
+      <div class="col-lg-9 col-md-9 col-xs-9 col-sm-9" >
+         <input type="text" maxlength="5" (keypress)="numberOnly($event)" class="inputCss"  [(ngModel)]="fourStarUser" 
+         placeholder="Enter Regional Champion points" >
+     </div>
+    <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2" >
+        <span >5 Star User:</span>
+      </div>
+      <div class="col-lg-1 col-md-1 col-xs-1 col-sm-1" >
+        <span >:</span>
+      </div>
+      <div class="col-lg-9 col-md-9 col-xs-9 col-sm-9" >
+         <input type="text" maxlength="5" (keypress)="numberOnly($event)" class="inputCss"  [(ngModel)]="fiveStarUser" 
+         placeholder="Enter Regional Champion points" >
+     </div>
+       </div>
+       <br>
+       <div class="headerStyle">
+        Payouts:
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2" >
+          <span >TeamOne:</span>
+        </div>
+        <div class="col-lg-1 col-md-1 col-xs-1 col-sm-1" >
+           <span >:</span>
+         </div>
+        <div  class="col-lg-9 col-md-9 col-xs-9 col-sm-9" >
+           <input type="text"  maxlength="5" (keypress)="numberOnly($event)"class="inputCss"  [(ngModel)]="teamOneCommission" 
+           placeholder="Enter Sign Up points" >
+       </div>
+       <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2" >
+           <span >Post Owner:</span>
+         </div>
+         <div class="col-lg-1 col-md-1 col-xs-1 col-sm-1" >
+           <span >:</span>
+         </div>
+         <div class="col-lg-9 col-md-9 col-xs-9 col-sm-9" >
+            <input type="text" maxlength="5" (keypress)="numberOnly($event)" class="inputCss"  [(ngModel)]="postOwner" 
+            placeholder="Enter Gold  points" >
+        </div>
+        <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2" >
+           <span >Users react to the post:</span>
+         </div>
+         <div class="col-lg-1 col-md-1 col-xs-1 col-sm-1" >
+           <span >:</span>
+         </div>
+         <div class="col-lg-9 col-md-9 col-xs-9 col-sm-9" >
+            <input type="text" maxlength="5" (keypress)="numberOnly($event)" class="inputCss"  [(ngModel)]="postReactUsers" 
+            placeholder="Enter Regional Champion points" >
+        </div>
+    
+       </div>
+       <br>
+       <div class="headerStyle">   
+Deduction rules for like and disllike
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2" >
+          <span >Normal user post:</span>
+        </div>
+        <div class="col-lg-1 col-md-1 col-xs-1 col-sm-1" >
+           <span >:</span>
+         </div>
+        <div  class="col-lg-9 col-md-9 col-xs-9 col-sm-9" >
+           <input type="text"  maxlength="5" (keypress)="numberOnly($event)"class="inputCss"  [(ngModel)]="nomralUserPostDeduction" 
+           placeholder="Enter Sign Up points" >
+       </div>
+       <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2" >
+           <span >1 Star User post:</span>
+         </div>
+         <div class="col-lg-1 col-md-1 col-xs-1 col-sm-1" >
+           <span >:</span>
+         </div>
+         <div class="col-lg-9 col-md-9 col-xs-9 col-sm-9" >
+            <input type="text" maxlength="5" (keypress)="numberOnly($event)" class="inputCss"  [(ngModel)]="oneStarUserPostDeduction" 
+            placeholder="Enter Gold  points" >
+        </div>
+        <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2" >
+           <span >2 Star User post:</span>
+         </div>
+         <div class="col-lg-1 col-md-1 col-xs-1 col-sm-1" >
+           <span >:</span>
+         </div>
+         <div class="col-lg-9 col-md-9 col-xs-9 col-sm-9" >
+            <input type="text" maxlength="5" (keypress)="numberOnly($event)" class="inputCss"  [(ngModel)]="twoStarUserPostDeduction" 
+            placeholder="Enter Regional Champion points" >
+        </div>
+    <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2" >
+        <span >3 Star User post:</span>
+      </div>
+      <div class="col-lg-1 col-md-1 col-xs-1 col-sm-1" >
+        <span >:</span>
+      </div>
+      <div class="col-lg-9 col-md-9 col-xs-9 col-sm-9" >
+         <input type="text" maxlength="5" (keypress)="numberOnly($event)" class="inputCss"  [(ngModel)]="threeStarUserPostDeduction" 
+         placeholder="Enter Regional Champion points" >
+     </div>
+    <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2" >
+        <span >4 Star User post:</span>
+      </div>
+      <div class="col-lg-1 col-md-1 col-xs-1 col-sm-1" >
+        <span >:</span>
+      </div>
+      <div class="col-lg-9 col-md-9 col-xs-9 col-sm-9" >
+         <input type="text" maxlength="5" (keypress)="numberOnly($event)" class="inputCss"  [(ngModel)]="fourStarUserPostDeduction" 
+         placeholder="Enter Regional Champion points" >
+     </div>
+    <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2" >
+        <span >5 Star User post:</span>
+      </div>
+      <div class="col-lg-1 col-md-1 col-xs-1 col-sm-1" >
+        <span >:</span>
+      </div>
+      <div class="col-lg-9 col-md-9 col-xs-9 col-sm-9" >
+         <input type="text" maxlength="5" (keypress)="numberOnly($event)" class="inputCss"  [(ngModel)]="fiveStarUserPostDeduction" 
+         placeholder="Enter Regional Champion points" >
+     </div>
+     <br>
+     <br>
+     <br>
+     <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2" >
+        <span >Post expiry(In hours):</span>
+      </div>
+      <div class="col-lg-1 col-md-1 col-xs-1 col-sm-1" >
+        <span >:</span>
+      </div>
+      <div class="col-lg-9 col-md-9 col-xs-9 col-sm-9" >
+         <input type="text" maxlength="5" (keypress)="numberOnly($event)" class="inputCss"  [(ngModel)]="postexpiryHours" 
+         placeholder="Enter Regional Champion points" >
+     </div>
+     <br>
+     <br>
+       <br>
+       <div>
+        <div style="margin-left:10%">
+            <button type="button" class="btn btn-primary btn-sm" (click)="updateRules()">Update</button> 
+        </div>
+       </div>
+
+    
+</div>

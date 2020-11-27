@@ -4,6 +4,9 @@ import { LoginComponent } from './components/login/login.component';
 import { VerifypostsComponent } from './components/verifyposts/verifyposts.component';
 import { CreatePostComponent } from './components/create-post/create-post.component';
 import { AppControllsComponent } from './components/app-controlls/app-controlls.component';
+import { CronsComponent } from './components/crons/crons.component';
+import { CreateContestComponent } from './components/create-contest/create-contest.component';
+import { RulesComponent } from './components/rules/rules.component';
 
 
 const routes: Routes = [
@@ -11,8 +14,10 @@ const routes: Routes = [
       { path: 'login', component: LoginComponent  },
       { path: 'verifyPost', component: VerifypostsComponent },
       { path: 'createpost', component: CreatePostComponent },
-      { path: 'createcontest', component: CreatePostComponent },
+      { path: 'createcontest', component: CreateContestComponent },
       { path: 'appcontrolls', component: AppControllsComponent },
+      { path: 'rules', component: RulesComponent },
+      { path: 'crons', component: CronsComponent },
 ];
 
 @NgModule({

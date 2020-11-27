@@ -16,15 +16,50 @@ import Swal from 'sweetalert2'
 export class CreatePostComponent implements OnInit {
   postDescription="";
   posts=[]
+  selectedCategories=["All"];
   postIds:any=[]
   selectedImage:any;
+  categoreis=[];
+  selectedCategory="";
+  rules={};
+  selectedPostValue;
+  selectedPostDeductionValue;
+  postValues=[];
   constructor( private route: Router, private emitter: EmitterService, private db: AngularFirestore, private http:HttpClient, private storage: AngularFireStorage) { 
     this.emitter.login.emit("xxxx") 
   
    }
 
   ngOnInit(): void {
+    this.getCategories();
     this.getUserPosts();
+    this.getRules();
+  }
+  getRules(){
+    this.db.collection("rules").get().subscribe(snaphsot=>{
+      snaphsot.forEach(doc=>{
+        this.postValues=[
+          {
+          "postValue":doc.data().nomralUser,"postDeductionValue":doc.data().nomralUserPostDeduction
+        },
+        {
+          "postValue":doc.data().oneStarUser,"postDeductionValue":doc.data().oneStarUserPostDeduction
+        },
+        {
+          "postValue":doc.data().twoStarUser,"postDeductionValue":doc.data().twoStarUserPostDeduction
+        },
+        {
+          "postValue":doc.data().threeStarUser,"postDeductionValue":doc.data().threeStarUserPostDeduction
+        },
+        {
+          "postValue":doc.data().fourStarUser,"postDeductionValue":doc.data().fourStarUserPostDeduction
+        },
+        {
+          "postValue":doc.data().fiveStarUser,"postDeductionValue":doc.data().fiveStarUserPostDeduction
+        }
+      ]
+      })
+    })
   }
   getUserPosts(){
     this.db.collection('userPosts').get().subscribe((querySnapshot)=> {
@@ -35,10 +70,44 @@ export class CreatePostComponent implements OnInit {
       });
   }); 
 }
+getCategories(){
+  this.db.collection('categories').get().subscribe((querySnapshot)=> {
+    querySnapshot.forEach((doc)=> {
+        this.categoreis= doc.data().categories;
+        console.log(this.categoreis)
+    });
+}); 
+}
+selectedValue(x){
+if(x=="All"){
+  if(this.selectedCategories.indexOf(x)!=-1){
+    this.selectedCategories=[];
+  }else{
+    this.selectedCategories=[];
+    this.selectedCategories.push(x)
+  }
+}else{
+  if(this.selectedCategories.indexOf('All')!=-1){
+    this.selectedCategories.splice(this.selectedCategories.indexOf('All'), 1);
+  }
+  if(this.selectedCategories.indexOf(x)!=-1){
+    var index = this.selectedCategories.indexOf(x);
+    this.selectedCategories.splice(index, 1);
+  }else{
+    this.selectedCategories.push(x)
+  }
+}
+console.log(this.selectedCategories);
+}
+choosepostValue(post){
+  this.selectedPostValue=post.postValue;
+  this.selectedPostDeductionValue=post.postDeductionValue;
+}
 
   getImage(data){
     this.db.collection("users").doc(data.ownerId).get().subscribe((doc) => {
       if(doc.exists){
+        data['username']=doc.data().username;
        data['userPhoto']=doc.data().photoUrl
        this.posts.push(data)
        this.posts= this.posts.sort(function(x, y){
@@ -70,37 +139,41 @@ export class CreatePostComponent implements OnInit {
   }
   createPost(){
     var postId = uuid();
-    if(this.imgURL!=null || this.postDescription !=""){
-      if(this.imgURL!=null && this.imgURL!==""){
-        this.uploadImage(this.imgURL,postId);
+    if(this.selectedPostValue!=undefined){
+      if(this.imgURL!=null || this.postDescription !=""){
+        if(this.imgURL!=null && this.imgURL!==""){
+          this.uploadImage(this.imgURL,postId,"image");
+        }else{
+        this.uploadPost("",postId,"")
+        }
       }else{
-      this.uploadPost("",postId)
+        Swal.fire({
+          title: 'Alert',
+          text: 'Please fill all fields',
+          icon: 'warning',
+          confirmButtonText: 'OK'
+        })
       }
     }else{
-      Swal.fire({
-        title: 'Alert',
-        text: 'Please fill all fields',
-        icon: 'warning',
-        confirmButtonText: 'OK'
-      })
+      alert("Please choose post value")
     }
+    
 
   }
-uploadImage(imageFile,postId) {
+uploadImage(imageFile,postId,image) {
  const filePath = `${"post"}_${postId}_${'.jpg'}`;
  const fileRef = this.storage.ref(filePath);
  var url=""
     this.storage.upload(filePath,this.selectedImage).snapshotChanges().pipe(
       finalize(()=>{
         fileRef.getDownloadURL().subscribe(url=>[
-          this.uploadPost(url,postId)
-        
+          this.uploadPost(url,postId,image)
         ])
       })
     ).subscribe()
   }
 
-  uploadPost(url,postId){
+  uploadPost(url,postId,image){
     this.imgURL=null;
     this.db.collection("userPosts").doc(postId).set(
       {
@@ -114,11 +187,19 @@ uploadImage(imageFile,postId) {
         "postStatus":"verified",
         "userPhote":"https://lh3.googleusercontent.com/a-/AOh14GjXXp_duWBSrHY3Tu4c7cVbPUGqYEAELKXsv62s=s96-c",
         "likes": {},
+        "postValue":this.selectedPostValue,
+        "postDeductionValue":this.selectedPostDeductionValue,
+        "noComments":{},
         "disLikes":{},
-        "comments":{}
+        "comments":{},
+        "postType":image,
+        "postCategory":this.selectedCategories.length==0?['All']:this.selectedCategories
       }
      
     )
+    this.addDebitedAmountToPostPoolingAmount(this.selectedPostValue,postId)
+
+    
     setTimeout(function(){ 
       this.posts=[]
       this.getUserPosts(); }.bind(this), 3000);
@@ -129,5 +210,10 @@ uploadImage(imageFile,postId) {
       icon: 'success',
       confirmButtonText: 'OK'
     }) 
+  }
+  addDebitedAmountToPostPoolingAmount(userPostdeductionValue, postId) {
+    this.db.collection("poolAmount")
+        .doc(postId)
+        .set({"postAmount": userPostdeductionValue, "postId": postId});
   }
 }

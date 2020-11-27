@@ -14,7 +14,9 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment} from '../environments/environment';
 import { CreatePostComponent } from './components/create-post/create-post.component';
 import { CreateContestComponent } from './components/create-contest/create-contest.component';
-import { AppControllsComponent } from './components/app-controlls/app-controlls.component'
+import { AppControllsComponent } from './components/app-controlls/app-controlls.component';
+import { CronsComponent } from './components/crons/crons.component';
+import { RulesComponent } from './components/rules/rules.component'
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { AppControllsComponent } from './components/app-controlls/app-controlls.
     VerifypostsComponent,
     CreatePostComponent,
     CreateContestComponent,
-    AppControllsComponent
+    AppControllsComponent,
+    CronsComponent,
+    RulesComponent
   ],
   imports: [
     BrowserModule,
