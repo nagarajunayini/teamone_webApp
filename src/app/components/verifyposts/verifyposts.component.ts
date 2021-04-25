@@ -53,6 +53,7 @@ export class VerifypostsComponent implements OnInit {
     this.db.collection('userPosts').doc(postDetails.postId).set(postDetails);
     this.posts = []
     if (actionStatus == "rejected") {
+      this.updatePostUserWallet(postDetails.ownerId,postDetails.postValue)
       Swal.fire({
         title: 'Rejected',
         text: 'Rejected successfully',
@@ -69,6 +70,17 @@ export class VerifypostsComponent implements OnInit {
 
     }
     this.getUserPosts();
+  }
+  updatePostUserWallet(ownerId,postValue){
+    this.db.collection("users").doc(ownerId).get().subscribe((doc) => {
+      if(doc.exists){
+        console.log(doc.data().referralPoints,"doc.data().referralPoints")
+        var points = postValue + doc.data().referralPoints;
+        this.db.doc("users/" + ownerId).update({
+          "referralPoints": points
+        });
+      }  
+   });
   }
   
 }

@@ -46,6 +46,7 @@ export class CronsComponent implements OnInit {
       querySnapshot.forEach((doc) => {
         if(doc.data().postStatus=="verified"){
           console.log(doc.data().postId);
+          console.log("setp1 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
           this.getPostPoolingAmount(doc.data().ownerId,doc.data(),doc.data().postId);
         }
       })
@@ -54,6 +55,8 @@ export class CronsComponent implements OnInit {
   getPostPoolingAmount(postOwnerid,document,documentId){
     this.db.collection("poolAmount").doc(documentId).get().subscribe((doc) => {
       if(doc.exists){
+        console.log("setp2 pooling Amount >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+
         this.updatePost(document,documentId,doc.data().postAmount);
       }  
    });
@@ -76,6 +79,8 @@ export class CronsComponent implements OnInit {
     }
 
     if(likes.length == disLikes.length){
+      console.log("setp3 nuetral >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+
 
       var temaOneCommission = (this.rules ['teamOneCommission'] *postValue)/100;
       var postOwnerWinningPoints =  (this.rules ['postOwner'] *postValue)/100;
@@ -84,7 +89,9 @@ export class CronsComponent implements OnInit {
       this.updateTeamOneWallet(finalTemOneAmount);
       this.updatePostUserWallet("nuetral",document.ownerId,postOwnerWinningPoints)
 
-    }else if( likes.length > disLikes.length){
+    }if( likes.length > disLikes.length){
+      console.log("setp3 likes >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+
       var temaOneCommission = (this.rules ['teamOneCommission'] *postValue)/100;
       var postOwnerWinningPoints =  (this.rules ['postOwner'] *postValue)/100;
       var remaingingPoints = postValue - temaOneCommission - postOwnerWinningPoints;
@@ -94,13 +101,15 @@ export class CronsComponent implements OnInit {
       likes.forEach(id=>{
         this.updateUserWallet(id,"Likers",eachUserPoint);
       })
-    }else{
+    }if(likes.length < disLikes.length){
+      console.log("setp4 dislikes >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+
       var temaOneCommission = (this.rules ['teamOneCommission'] *postValue)/100;
       var postOwnerWinningPoints =  (this.rules ['postOwner'] *postValue)/100;
       var remaingingPoints = postValue - temaOneCommission - postOwnerWinningPoints;
       var eachUserPoint = Math.round(remaingingPoints/disLikes.length);
       this.updateTeamOneWallet(temaOneCommission);
-      this.updatePostUserWallet("win",document.ownerId,postOwnerWinningPoints)
+      // this.updatePostUserWallet("win",document.ownerId,postOwnerWinningPoints)
       disLikes.forEach(id=>{
         this.updateUserWallet(id,"disLikers",postValue);
       })
@@ -109,8 +118,10 @@ export class CronsComponent implements OnInit {
   }
   
   updatePostUserWallet(status,ownerId,postValue){
+
     this.db.collection("users").doc(ownerId).get().subscribe((doc) => {
       if(doc.exists){
+        console.log("setp4 post user wallet  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", ownerId)
         console.log(doc.data().referralPoints,"doc.data().referralPoints")
         var points = postValue + doc.data().referralPoints;
         this.db.doc("users/" + ownerId).update({
@@ -120,16 +131,16 @@ export class CronsComponent implements OnInit {
    });
   }
 
-  updateTeamOneWallet(winAmount){
-    this.db.collection("teamoneWallet").get().subscribe(snaphsot=>{
-      snaphsot.forEach(doc=>{
-        this.rules= doc.data();
-        this.db.doc('teamoneWallet'+doc.data().userId).update({
-          "walletAmount":doc.data().walletAmount + winAmount,
-          "userId":doc.data().userId
-        })
-      })
-    })
+  updateTeamOneWallet(winAmount){ 
+    // this.db.collection("teamoneWallet").get().subscribe(snaphsot=>{
+    //   snaphsot.forEach(doc=>{
+    //     this.rules= doc.data();
+    //     this.db.doc('teamoneWallet'+doc.data().userId).update({
+    //       "walletAmount":doc.data().walletAmount + winAmount,
+    //       "userId":doc.data().userId
+    //     })
+    //   })
+    // })
   }
 
   updateUserWallet(ownerId,winnerList,postValue) {
