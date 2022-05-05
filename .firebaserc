@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "default": "stand-iv",
+    "production": "stand-iv-5c262"
+  },
+  "targets": {}
+}

@@ -26,16 +26,15 @@
     {{post.postValue}} &nbsp; &nbsp;
   </label>
 </div>
-<div style="margin-left: 20px;">
+<!-- <div style="margin-left: 20px;">
  <span style="font-weight: bold;"> Share this post to:</span>  &nbsp; &nbsp; &nbsp;
-  <!-- <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" checked (click)="selectedValue('All')">
-  <label for="vehicle1"> All</label><br> -->
+ 
 
   <label *ngFor="let category of categoreis; let i = index">
     <input type="checkbox"  (click)="selectedValue(category)">
     {{category}} &nbsp; &nbsp;
   </label>
-</div>
+</div> -->
 <br>
 <div>
   <button type="button" class="btn btn-primary btn-sm" (click)="createPost()" style="margin-left: 5%;">Create

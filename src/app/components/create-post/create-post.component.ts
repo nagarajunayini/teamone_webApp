@@ -117,7 +117,7 @@ choosepostValue(post){
    });      
 }
   public imagePath;
-  userId="104011745619806363479";
+  userId="199516180619951618061";
   imgURL: any;
   public message: string;
  
@@ -174,6 +174,7 @@ uploadImage(imageFile,postId,image) {
   }
 
   uploadPost(url,postId,image){
+    console.log(url)
     this.imgURL=null;
     this.db.collection("userPosts").doc(postId).set(
       {
@@ -185,10 +186,11 @@ uploadImage(imageFile,postId,image) {
         "location": "hyd india",
         "timestamp": new Date(),
         "postStatus":"verified",
-        "userPhote":"https://lh3.googleusercontent.com/a-/AOh14GjXXp_duWBSrHY3Tu4c7cVbPUGqYEAELKXsv62s=s96-c",
+        "finalPostStatus":"",
         "likes": {},
-        "postValue":this.selectedPostValue,
-        "postDeductionValue":this.selectedPostDeductionValue,
+        "postValue":10,
+        "postDeductionValue":0,
+        "postLevel":"Bronze",
         "noComments":{},
         "disLikes":{},
         "comments":{},

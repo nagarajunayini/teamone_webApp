@@ -30,6 +30,28 @@ export class CronsComponent implements OnInit {
     })
   }
 
+  postApproves(){
+    this.db.collection('userPosts', ref => ref
+    .where('postStatus','==','verified')
+    ).get().subscribe((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        if(doc.data().postStatus=="verified"){
+          console.log(doc.data().postId);
+         this.removeComments_like_dislikes(doc.data().postId)
+        }
+      })
+    })
+  }
+
+  removeComments_like_dislikes(documentId){
+    this.db.doc("userPosts/" + documentId).update({
+      "likes": {},
+      "noComments":{},
+      "disLikes":{},
+      "comments":{},
+    });
+  }
+
 
   //Start post expiry and winner list 
   anounceWinner(){
@@ -62,9 +84,7 @@ export class CronsComponent implements OnInit {
    });
   }
   updatePost(document,documentId,postValue){
-    this.db.doc("userPosts/" + documentId).update({
-      "postStatus": "expired",
-    });
+   
     let likes=[];
     let disLikes =[];
     for (const [key, value] of Object.entries(document.likes)) {
@@ -80,7 +100,10 @@ export class CronsComponent implements OnInit {
 
     if(likes.length == disLikes.length){
       console.log("setp3 nuetral >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-
+      this.db.doc("userPosts/" + documentId).update({
+        "postStatus": "expired",
+        "finalPostStatus":"nuetral"
+      });
 
       var temaOneCommission = (this.rules ['teamOneCommission'] *postValue)/100;
       var postOwnerWinningPoints =  (this.rules ['postOwner'] *postValue)/100;
@@ -91,6 +114,10 @@ export class CronsComponent implements OnInit {
 
     }if( likes.length > disLikes.length){
       console.log("setp3 likes >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+      this.db.doc("userPosts/" + documentId).update({
+        "postStatus": "expired",
+        "finalPostStatus":"won"
+      });
 
       var temaOneCommission = (this.rules ['teamOneCommission'] *postValue)/100;
       var postOwnerWinningPoints =  (this.rules ['postOwner'] *postValue)/100;
@@ -103,7 +130,10 @@ export class CronsComponent implements OnInit {
       })
     }if(likes.length < disLikes.length){
       console.log("setp4 dislikes >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-
+      this.db.doc("userPosts/" + documentId).update({
+        "postStatus": "expired",
+        "finalPostStatus":"lost"
+      });
       var temaOneCommission = (this.rules ['teamOneCommission'] *postValue)/100;
       var postOwnerWinningPoints =  (this.rules ['postOwner'] *postValue)/100;
       var remaingingPoints = postValue - temaOneCommission - postOwnerWinningPoints;
@@ -252,6 +282,8 @@ export class CronsComponent implements OnInit {
       })
     });
   }
+
+
 
   // end assign badges
   

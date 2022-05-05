@@ -22,4 +22,7 @@ describe('CronsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('should not be empty',()=>{
+    expect(component.rules.length).not.toBe(0);
+  });
 });
